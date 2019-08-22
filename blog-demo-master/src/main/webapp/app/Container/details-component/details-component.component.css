@@ -1,0 +1,101 @@
+@import "https://www.w3schools.com/w3css/4/w3pro.css";
+@import "https://fonts.googleapis.com/icon?family=Material+Icons";
+
+/* .incidentCL,.origin,.classific,.destination,.carrier,.modeTransport,.incType,.chkBox,
+.shipment,.loss,.chkRecovery,.txtRecovery,.clTimeFrame,
+.div_Products{
+    padding-left:80px;
+    display:inline-block;
+   
+} */
+
+.w3-display-center,.div_Products,
+.lblChk,.chkBoxProduct{
+    padding-left:80px;
+    display:inline-block;
+   
+}
+.w3-display-container{
+    width: 70%;
+}
+
+.divFrame{
+    padding-left:18px;
+    display:inline-block;
+   
+}
+.radioBtn{
+/* padding-left:30px; */
+ margin-left: 16px;
+ padding-right: 5px;
+}
+
+.title{
+    color: blue;
+   
+    font-family: times, Times New Roman, times-roman, georgia, serif;
+   font-size: 28px;
+   line-height: 40px;
+   letter-spacing: -1px;
+    
+  }
+
+
+.incidentCL,.classific{
+    padding-left:10px;
+    display:inline-block;
+    width: 525px;
+}
+.lblincident{
+    font-size: 15px;
+    display:inline-block;
+    font-weight: bold;
+}
+.divider{
+    padding-top:20px;
+    display:inline-block;
+    border-top-width: 5px;
+
+}
+.origin,.destination,.modeTransport,
+.incType,.radioBtn,.clTrack{
+    padding-bottom: 15px;
+    padding-top: 0px;
+    padding-right: 20px;
+    width: 225px;
+}
+
+.shipment,.loss{
+    padding-bottom: 15px;
+    padding-top: 5px;
+    padding-right: 20px;
+    width: 225px;
+}
+.origin,.destination,.carrier{
+    padding-bottom: 25px;
+}
+
+.summary{
+    width: 525px;
+    padding-left: 8px;
+    display:inline-block;
+}
+
+.summary2{
+    width: 925px;
+    padding-left: 8px;
+    display:inline-block;
+}
+.lblOrigin,.lblDestination,.lblCarrier,.lblModeTransport,.lblIncType,
+.lblShip,.lblLossValue, .lblRecovery{
+    font-size: 15px;
+    /* display:inline-block; */
+    /* font-weight: bold; */
+}
+
+.lblTrackDef{
+    padding-right: 20px;
+}
+
+
+

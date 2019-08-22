@@ -1,0 +1,151 @@
+<div class="w3-display-container">
+    <mat-card-title class="title">Reported By
+        <!-- <mat-card-subtitle class="titleSub"><b>(The person who brought this incident to the company's attention)</b> -->
+        <mat-card-subtitle class="titleSub"><b>(Reporter Name & Contact Information)</b>
+        </mat-card-subtitle>
+    </mat-card-title>
+    <mat-divider></mat-divider>
+    <mat-divider></mat-divider>
+    <mat-divider></mat-divider>
+
+    <div class="w3-row">
+        <!-- <label class="details" for="lAddr">Reporter</label><br> -->
+        <div class="w3-display-center">
+            <tr>
+                <label class="clTimeFrame" id="lblTimeFrame">
+                    Was this issue/event raised by another individual?</label>
+            </tr>
+
+            <tr>
+                <mat-radio-group class="tp-radio-group" [formControl]="fmRadioBtn" [(ngModel)]="favoriteSeason">
+                    <mat-radio-button class="tp-radio-button" *ngFor="let season of seasons" [value]="season">
+                        {{season}}
+                    </mat-radio-button>
+                </mat-radio-group>
+            </tr>
+            <div class="tp-selected-value">
+                Selected Season: {{favoriteSeason}}
+            </div>
+        </div><br>
+        <div class="w3-display-center" *ngIf="favoriteSeason">
+            <!-- <tr>
+            <label *ngIf="favoriteSeason === 'Yes'" for="lAddr">Relationship to the Company</label>
+        </tr> -->
+            <tr>
+                <td>
+                    <mat-form-field *ngIf="favoriteSeason === 'Yes'" class="Role" appearance="outline">
+
+                        <mat-label class="lblRelation">Relationship to the Company</mat-label>
+                        <mat-select [(value)]="selected" [formControl]="fmRelation" id="evaluationRuleField"
+                            placeholder="Select value" name="evaluationRuleField" required>
+                            <mat-option *ngFor="let relation of relations" [value]="relation">
+                                {{relation.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="fmRelation.hasError('required')">
+                                Relationship is <strong>required</strong>, please select one
+                            </mat-error>
+                    </mat-form-field>
+                </td>
+                <td>
+                    <div *ngIf="selected  && favoriteSeason === 'Yes'">
+                        <!-- Selected Relatioship: {{selected.viewValue}} -->
+                        <div *ngIf="selected.viewValue === 'Other'">
+                            <mat-form-field class="other" appearance="outline">
+                                <mat-label class="lblOrigin">
+                                        <mat-icon matSuffix>mode_edit</mat-icon>  "Other" Relationship </mat-label>
+                                <input matInput type="text" [formControl]="fmOtherRelation" required
+                                    placeholder="Type Relationship" [(ngModel)]="valueOther">
+                                 <button mat-button *ngIf="valueOther" matSuffix mat-icon-button aria-label="Clear"
+                                    (click)="valueOther=''">
+                                    <mat-icon>close</mat-icon>
+                                </button>
+                                <mat-error *ngIf="fmOtherRelation.hasError('required')">
+                                    Relationship is <strong>required</strong>
+                                </mat-error>
+                                <mat-hint>please type relationship</mat-hint>
+                            </mat-form-field>
+                        </div>
+
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div *ngIf="selected && favoriteSeason === 'Yes'">
+
+                        <mat-form-field class="fName" appearance="outline">
+                            <mat-label class="lblfName">
+                            <mat-icon matSuffix>mode_edit</mat-icon>  First Name </mat-label>
+                            <input matInput type="text" [formControl]="fmName" placeholder="Type First Name"
+                                [(ngModel)]="valuefName" required>
+                           
+                            <button mat-button *ngIf="valuefName" matSuffix mat-icon-button aria-label="Clear"
+                                (click)="valuefName=''">
+                                <mat-icon>close</mat-icon>
+                            </button>
+                            <mat-error *ngIf="fmName.hasError('required')">
+                                First Name is <strong>required</strong>
+                            </mat-error>
+                            <mat-hint>please type First Name</mat-hint>
+                        </mat-form-field>
+
+                        <mat-form-field class="lName" appearance="outline">
+                               
+                            <mat-label class="lbllName">
+                                    <mat-icon matSuffix>mode_edit</mat-icon>  Last Name </mat-label>
+                            <input matInput type="text" [formControl]="fmlName" placeholder="Type Last Name"
+                                [(ngModel)]="valuelName" required>
+                           
+                            <button mat-button *ngIf="valuelName" matSuffix mat-icon-button aria-label="Clear"
+                                (click)="valuelName=''">
+                                <mat-icon>close</mat-icon>
+                            </button>
+                            <mat-error *ngIf="fmlName.hasError('required')">
+                                Last Name is <strong>required</strong>
+                            </mat-error>
+                            <mat-hint>please type Last Name</mat-hint>
+                        </mat-form-field>
+
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <div *ngIf="selected && favoriteSeason === 'Yes'">
+                        <mat-form-field class="phone" appearance="outline">
+                            <mat-label class="lbllName">
+                                    <mat-icon matSuffix>mode_edit</mat-icon>  Phone Number (Preferred)</mat-label>
+                            <input matInput type="text" [formControl]="fmPhone" placeholder="xxx-xxx-xxxx"
+                                [(ngModel)]="valuePhone" required>
+                           
+                            <button mat-button *ngIf="valuePhone" matSuffix mat-icon-button aria-label="Clear"
+                                (click)="valuePhone=''">
+                                <mat-icon>close</mat-icon>
+                            </button>
+                            <mat-error *ngIf="fmPhone.hasError('required')">
+                                    Phone Number is <strong>required</strong>
+                                </mat-error>
+
+                            <mat-hint>Include the area code, extension, and/or dialing codes if applicable</mat-hint>
+                        </mat-form-field>
+
+                        <mat-form-field class="infoEmail" appearance="outline">
+                                <mat-label class="lbllName"><mat-icon matSuffix>mode_edit</mat-icon>  Email </mat-label>
+                            <input matInput placeholder="Email" [formControl]="email" required
+                            [(ngModel)]="valuelName">
+                            <button mat-button *ngIf="valuelName" matSuffix mat-icon-button aria-label="Clear"
+                                (click)="valuelName=''">
+                                <mat-icon>close</mat-icon>
+                            </button>
+                            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+                            <mat-hint>Format: username@domain.com</mat-hint>
+                        </mat-form-field>
+                    </div>
+                </td>
+            </tr>
+
+        </div>
+    </div>
+</div>

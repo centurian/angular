@@ -1,0 +1,28 @@
+@import "https://www.w3schools.com/w3css/4/w3pro.css";
+@import "https://fonts.googleapis.com/icon?family=Material+Icons";
+
+
+.w3-display-center{
+    padding-left:40px;
+    display:inline-block;
+   
+}
+
+
+.title{
+  color: blue;
+ 
+  font-family: times, Times New Roman, times-roman, georgia, serif;
+ font-size: 28px;
+ line-height: 40px;
+ letter-spacing: -1px;
+  
+}
+
+.btn{
+    padding-left: 100px;
+}
+
+.rptTitle{
+    font-size: 0.975em;
+}

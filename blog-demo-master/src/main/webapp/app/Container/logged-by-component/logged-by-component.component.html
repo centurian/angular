@@ -1,0 +1,97 @@
+<div class="w3-display-container">
+
+    <mat-card-title class="title">Your Information
+        <mat-card-subtitle class="titleSub"><b>( Your Name & Contact information )</b></mat-card-subtitle>
+    </mat-card-title>
+    <mat-divider></mat-divider>
+    <mat-divider></mat-divider>
+    <mat-divider></mat-divider>
+    <!-- <mat-progress-bar mode="buffer"></mat-progress-bar> -->
+
+    <div class="w3-row">
+        <!-- <div class="w3-display-center">
+            <tr>
+                <mat-checkbox class="chkInfo" [(ngModel)]="Info"></mat-checkbox> &nbsp;
+                <td>
+                    <label>Save “Your Name & Contact Information” for future use.</label> <br>
+                    <mat-card-subtitle class="subTitle">(By checking this box you agree to allow <b> Dell Technologies </b> to store your information in a <b>“Cookie” </b>on this computer.)</mat-card-subtitle>
+                </td>
+            </tr>
+        </div> -->
+        <div class="w3-display-center">
+            <tr>
+                <mat-form-field class="fName" appearance="outline">
+                    <mat-label class="lblfName">First Name</mat-label>
+                    <input matInput type="text" [formControl]="fmName" placeholder="Type First Name"
+                        [(ngModel)]="valuefName">
+                    <mat-icon matSuffix>mode_edit</mat-icon>
+                    <mat-error *ngIf="fmName.hasError('required')">
+                        First Name is <strong>required</strong>
+                    </mat-error>
+                    <!-- <mat-hint>please type First Name</mat-hint> -->
+                </mat-form-field>
+
+                <mat-form-field class="lName" appearance="outline">
+                    <mat-label class="lbllName">Last Name</mat-label>
+                    <input matInput type="text" [formControl]="fmlName" placeholder="Type Last Name"
+                        [(ngModel)]="valuelName">
+                    <mat-icon matSuffix>mode_edit</mat-icon>
+                    <mat-error *ngIf="fmlName.hasError('required')">
+                        Last Name is <strong>required</strong>
+                    </mat-error>
+                    <!-- <mat-hint>please type Last Name</mat-hint> -->
+                </mat-form-field>
+
+              
+              
+            </tr>
+            <tr>
+            <mat-form-field class="lBadge" appearance="outline">
+                    <mat-label class="lbllName">NTID</mat-label>
+                    <input matInput type="text" [formControl]="fmBadge" placeholder="Type NTID"
+                        [(ngModel)]="valueBadge">
+                    <mat-icon matSuffix>mode_edit</mat-icon>
+                    <!-- <mat-hint>please type Badge Number</mat-hint> -->
+                </mat-form-field>
+
+                <mat-form-field class="location" appearance="outline">
+                    <mat-label class="lblfName">Physical Location</mat-label>
+                    <input matInput type="text" [formControl]="fmLocation" placeholder="Type First Name"
+                        [(ngModel)]="valueLocation">
+                    <mat-icon matSuffix>mode_edit</mat-icon>
+                    <mat-error *ngIf="fmLocation.hasError('required')">
+                        Location is <strong>required</strong>
+                    </mat-error>
+                    <!-- <mat-hint>please type Physical Location</mat-hint> -->
+                </mat-form-field>
+            </tr>
+            <tr>
+                <mat-form-field class="phone" appearance="outline">
+                    <mat-label class="lbllName">Phone Number (Preferred)</mat-label>
+                    <input matInput type="text" [formControl]="fmPhone" placeholder="xxx-xxx-xxxx"
+                        [(ngModel)]="valuePhone">
+                    <mat-icon matSuffix>mode_edit</mat-icon>
+                    <mat-hint>Include the area code, extension, and/or dialing codes if applicable.</mat-hint>
+                </mat-form-field>
+
+                <mat-form-field class="infoEmail" appearance="outline">
+                    <input matInput placeholder="Email" [formControl]="email" required>
+                    <mat-icon matSuffix>mode_edit</mat-icon>
+                    <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+                </mat-form-field>
+            </tr>
+            
+            <!-- <div class="bottom">
+                    <tr>
+                        <mat-checkbox class="chkSec" [(ngModel)]="Sec"></mat-checkbox> &nbsp;
+                        <td>
+                            <label>Security Member of DCCESI </label> <br>
+                            <mat-card-subtitle class="subTitle">(If you are not a part of this team or do not know what this team is, do NOT check this box)</mat-card-subtitle>
+                        </td>
+                    </tr>
+                </div> -->
+
+
+        </div>
+    </div>
+</div>

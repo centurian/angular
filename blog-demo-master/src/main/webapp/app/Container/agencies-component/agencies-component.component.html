@@ -1,0 +1,269 @@
+<div class="w3-display-container">
+
+    <mat-card-title class="title">Outside Agency Involvement
+        <mat-card-subtitle>(i.e. Police/Regulatory)</mat-card-subtitle>
+    </mat-card-title>
+    <mat-divider></mat-divider>
+    <mat-divider></mat-divider>
+    <mat-divider></mat-divider>
+    <div class="w3-row">
+        <label class="details" for="lAddr">Outside Agencies</label><br>
+
+
+
+        <div class="w3-display-center">
+            <tr>
+                <label class="details" for="lAddr">Were any outside agencies involved in this incident/concern?</label>
+            </tr>
+            <mat-radio-group class="tp-radio-group" [(ngModel)]="favoriteChoice">
+                <mat-radio-button class="tp-radio-button" *ngFor="let choice of choices" [value]="choice">
+                    {{choice}}
+                </mat-radio-button>
+            </mat-radio-group>
+            <div class="tp-selected-value">
+                Selected Choice: {{favoriteChoice}}
+            </div>
+            <div *ngIf="favoriteChoice">
+                <div *ngIf="favoriteChoice === 'Yes'">
+                    <tr>
+                        <label class="clAgency" id="clAgencyId">
+                            Using the input controls below, create a list of Participants.
+                            <mat-card-subtitle class="subTitle">(At least one Participant is required.)
+                            </mat-card-subtitle>
+                        </label>
+                    </tr>
+
+                    <tr>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Agency Name</th>
+                                    <th>Type</th>
+                                    <th>Last Name</th>
+                                    <th>First Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let agency of agencies">
+                                    <td>{{  agency.agencyName }}</td>
+                                    <td>
+                                        <span contenteditable="true">{{ agency.type }}</span>
+                                    </td>
+                                    <td>{{ agency.lName }}</td>
+                                    <td>{{ agency.fName }}</td>
+                                    <td>
+                                        <span>
+                                            <button mat-button>
+                                                <mat-icon matSuffix>mode_edit</mat-icon>
+                                            </button>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <button mat-button>
+                                                <mat-icon matSuffix>update</mat-icon>
+                                            </button>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <button mat-button>
+                                                <mat-icon matSuffix>person_add_disabled</mat-icon>
+                                            </button>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <!-- <span class="table-remove">
+                                        <button type="button" mdbBtn color="danger" rounded="true" size="sm" class="my-0" (click)="remove(id)">Remove</button>
+                                      </span> -->
+                            </tbody>
+
+                        </table>
+                    </tr>
+                </div>
+            </div>
+        </div>
+        <mat-divider></mat-divider>
+        <mat-divider></mat-divider>
+        <div *ngIf="favoriteChoice">
+            <div *ngIf="favoriteChoice === 'Yes'">
+                <label class="clTimeFrame" id="lblTimeFrame">Agency Detail</label>
+            </div>
+        </div>
+
+        <div *ngIf="favoriteChoice">
+            <div *ngIf="favoriteChoice === 'Yes'">
+                <div class="w3-display-center">
+                    <tr>
+                        <mat-form-field class="agencyCL"  panelClass="panel"  appearance="outline">
+                            <mat-label class="lblageName">  <mat-icon  matSuffix>mode_edit</mat-icon> Agency Name*</mat-label>
+                            <input matInput type="text" [formControl]="fmAgeName" panelClass="panel" placeholder="Type Agency Name"
+                                [(ngModel)]="valueAgeName">
+                           
+                            <!-- <button mat-button *ngIf="valueAgeName" matSuffix mat-icon-button aria-label="Clear"
+                                (click)="valueAgeName=''">
+                                <mat-icon>close</mat-icon>
+                            </button> -->
+                            <mat-error *ngIf="fmAgeName.hasError('required')">
+                                Agency Name is <strong>required</strong>
+                            </mat-error>
+                            <mat-hint>please type Agency Name</mat-hint>
+                        </mat-form-field>
+                    </tr>
+                    <tr>
+                        <mat-form-field class="typeCL"   appearance="outline">
+
+                            <mat-label class="lblincident">Type*</mat-label>
+                            <mat-select [(value)]="selected" [formControl]="fmType" id="fmType"
+                                placeholder="Select Type" name="fmType">
+                                <mat-option *ngFor="let type of types" [value]="type">
+                                    {{type.viewValue}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field class="reportCase"   appearance="outline">
+                            <mat-label class="lblReportCase"> <mat-icon matSuffix>mode_edit</mat-icon> Report/Case #</mat-label>
+                            <input matInput type="text" [formControl]="fmReportCase" placeholder="Type Report/Case #"
+                                [(ngModel)]="valueReportCase">
+                            
+                            <mat-hint>Please type Report/Case #</mat-hint>
+                        </mat-form-field>
+                    </tr>
+                    <tr>
+                        
+                            <mat-form-field class="addrsCL"   appearance="outline">
+                                <mat-label class="lblAddrs">  <mat-icon matSuffix>mode_edit</mat-icon> Address</mat-label>
+                                <input matInput type="text" [formControl]="fmAddrs" placeholder="Type Address"
+                                    [(ngModel)]="valueAddrs">
+                               
+                                <button mat-button *ngIf="valueAddrs" matSuffix mat-icon-button aria-label="Clear"
+                                    (click)="valueAddrs=''">
+                                    <mat-icon>close</mat-icon>
+                                </button>
+                                <mat-hint>Please type address</mat-hint>
+                            </mat-form-field>
+                       
+                    </tr>
+                            <tr>
+                                <mat-form-field class="cityCL"  appearance="outline" >
+                                    <mat-label class="lblCity">   <mat-icon matSuffix>mode_edit</mat-icon> City</mat-label>
+                                    <input matInput type="text" [formControl]="fmCity" placeholder="Type City"
+                                        [(ngModel)]="valueCity">
+                                  
+                                    <mat-hint>Please type City</mat-hint>
+                                </mat-form-field>
+                           
+                                <mat-form-field class="stateCL"  appearance="outline" >
+                                    <mat-label class="lblState">State</mat-label>
+                                    <mat-select [(value)]="selected" [formControl]="fmState" id="fmState"
+                                        placeholder="Select State" name="fmState">
+                                        <mat-option *ngFor="let state of states" [value]="state">
+                                            {{state.viewValue}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                                <mat-form-field class="zipCL"   appearance="outline">
+                                    <mat-label class="lblZip">    <mat-icon matSuffix>mode_edit</mat-icon> Zip Code</mat-label>
+                                    <input matInput type="text" [formControl]="fmZip" placeholder="Type Zip Code"
+                                        [(ngModel)]="valueZip">
+                                 
+                                    <mat-hint>Please type Zip Code</mat-hint>
+                                </mat-form-field>
+                            </tr>
+                        
+                </div>
+
+            </div>
+        </div>
+
+        <mat-divider></mat-divider>
+        <mat-divider></mat-divider>
+        <div *ngIf="favoriteChoice">
+            <div *ngIf="favoriteChoice === 'Yes'">
+                <label class="clTimeFrame" id="lblTimeFrame">Contact Name & Information</label>
+            </div>
+        </div>
+
+        <div *ngIf="favoriteChoice">
+            <div *ngIf="favoriteChoice === 'Yes'">
+                <div class="w3-display-center">
+                    <tr>
+                        <mat-form-field class="prefixCL"  appearance="outline" >
+
+                            <mat-label class="lblincident">Prefix</mat-label>
+                            <mat-select [(value)]="selected" [formControl]="fmPrefix" id="fmPrefix"
+                                placeholder="Select Prefix" name="fmPrefix">
+                                <mat-option *ngFor="let prefix of prefixs" [value]="prefix">
+                                    {{prefix.viewValue}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field class="fName"  appearance="outline">
+                            <mat-label class="lblDestination"> <mat-icon matSuffix>mode_edit</mat-icon> First Name*</mat-label>
+                            <input matInput type="text" [formControl]="fmFname" placeholder="Type First Name"
+                                [(ngModel)]="valueFname">
+                           
+                            <mat-error *ngIf="fmFname.hasError('required')">
+                                First Name is <strong>required</strong>
+                            </mat-error>
+                            <mat-hint>please type First Name</mat-hint>
+                        </mat-form-field>
+                        <mat-form-field class="miCL" appearance="outline" >
+                            <mat-label class="lblZip">  M.I.</mat-label>
+                            <input matInput type="text" [formControl]="fmMi" placeholder="Type M.I."
+                                [(ngModel)]="valueMi">
+                          
+                          
+                        </mat-form-field>
+                        <mat-form-field class="lName"  appearance="outline">
+                            <mat-label class="lblDestination">  <mat-icon matSuffix>mode_edit</mat-icon>Last Name*</mat-label>
+                            <input matInput type="text" [formControl]="fmLname" placeholder="Type Last Name"
+                                [(ngModel)]="valueLname">
+                          
+                            <mat-error *ngIf="fmLname.hasError('required')">
+                                Last Name is <strong>required</strong>
+                            </mat-error>
+                            <mat-hint>please type Last Name</mat-hint>
+                        </mat-form-field>
+
+                    </tr>
+                    <tr>
+                        <mat-form-field class="badgeCL"  appearance="outline" >
+                            <mat-label class="lblBadge"> <mat-icon matSuffix>mode_edit</mat-icon> Badge/Employee ID</mat-label>
+                            <input matInput type="text" [formControl]="fmBadge" placeholder="Type Badge Number"
+                                [(ngModel)]="valueBadge">
+                            
+                            <mat-hint>Please type Badge Number</mat-hint>
+                        </mat-form-field>
+
+                        <mat-form-field class="phoneCL"  appearance="outline">
+                            <mat-label class="lbllName"> <mat-icon matSuffix>mode_edit</mat-icon>Phone Number (Preferred)</mat-label>
+                            <input matInput type="text" [formControl]="fmPhone" placeholder="xxx-xxx-xxxx"
+                                [(ngModel)]="valuePhone">
+                            
+                            <mat-hint>Include the area code, extension, and/or dialing codes if applicable.</mat-hint>
+                        </mat-form-field>
+                        <mat-form-field class="phoneCL"  appearance="outline" >
+                                <mat-label class="lbllName"> <mat-icon matSuffix>mode_edit</mat-icon>Phone Number (Alternative)</mat-label>
+                                <input matInput type="text" [formControl]="fmPhoneAlt" placeholder="xxx-xxx-xxxx"
+                                    [(ngModel)]="valuePhone">
+                               
+                                <mat-hint>Include the area code, extension, and/or dialing codes if applicable.</mat-hint>
+                            </mat-form-field>
+                            <mat-form-field class="infoEmail"  appearance="outline">
+                                    <mat-label class="lbllName"> <mat-icon matSuffix>mode_edit</mat-icon>Email</mat-label>
+                                    <input matInput placeholder="Email" [formControl]="email" required>
+                                   
+                                    <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+                            </mat-form-field>
+
+                    </tr>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>

@@ -1,0 +1,101 @@
+@import "https://www.w3schools.com/w3css/4/w3pro.css";
+@import "https://fonts.googleapis.com/icon?family=Material+Icons";
+
+.w3-display-center,.div_Products,
+.lblChk,.chkBoxProduct{
+    padding-left:40px;
+    display:inline-block;
+   
+}
+.w3-display-container{
+  width: 70%;
+
+}
+.country,.state{
+    padding-left:10px;
+    display:inline-block;
+    width: 300px;
+}
+
+.title{
+    color: blue;
+   
+    font-family: times, Times New Roman, times-roman, georgia, serif;
+   font-size: 28px;
+   line-height: 40px;
+   letter-spacing: -1px;
+    
+  }
+
+.phy-form-location{
+    width: 700px;
+    padding-bottom: 10px;
+}
+
+
+.adrr{
+    padding-bottom: 10px;
+    padding-top: 0px;
+    padding-right: 20px;
+    width: 600px;
+  }
+
+  .adr{
+    padding-bottom: 10px;
+    padding-top: 0px;
+    padding-right: 20px;
+    width: 300px;
+  }
+
+.divider{
+    padding-top:20px;
+    display:inline-block;
+    border-top-width: 5px;
+
+}
+
+
+/* 
+.w3-container{
+color: rgb(32, 32, 170)
+}
+
+.place-text{
+    font-size: 10pt;
+}
+
+.w3-container {
+    border-right: 1px solid green;
+    
+  }
+
+  .phy-form-location,.country,.state,.adr,.zip,.city{
+     
+      padding-left:80px;
+      padding-bottom: 60px;
+      padding-top: 20px;
+      display:inline-block;
+  }
+
+  .pselect{
+      color: black;
+      display: flex;;
+  }
+
+.adr{
+    width: 45%;
+}
+.city{
+    width: 30%;
+}
+.zip{
+    width: 30%;
+}
+.phy-form-location{
+    width: 70%;
+}
+
+.details{
+    width: 30%
+}
+ */

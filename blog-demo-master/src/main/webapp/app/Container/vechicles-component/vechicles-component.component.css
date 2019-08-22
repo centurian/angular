@@ -1,0 +1,79 @@
+@import "https://www.w3schools.com/w3css/4/w3pro.css";
+@import "https://fonts.googleapis.com/icon?family=Material+Icons";
+
+
+.w3-display-center{
+  padding-left:40px;
+  display:inline-block;
+ 
+}
+
+.w3-display-container{
+  width: 50%;
+  border-block-end-color: rgb(247, 12, 12);
+  border-bottom-color: blue;
+}
+
+.title{
+color: blue;
+
+font-family: times, Times New Roman, times-roman, georgia, serif;
+font-size: 28px;
+line-height: 40px;
+letter-spacing: -1px;
+
+}
+
+table {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    min-width: 500px;
+}
+ 
+th.mat-header-cell {
+    text-align: left;
+    max-width: 500px;
+}
+
+ td,th {
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 4px;
+  }
+  table {
+    border: 2px solid black;
+  }
+  .tp-radio-button{
+    /* padding-left:30px; */
+    margin-left: 16px;
+}
+
+.ownerCL,.ownerNameCL,.makeModelCL,.styleYearCL
+,.colorPlateCL,.makeModelCL,.descriptionCL,.plateCL,.vinCL{
+ padding-bottom: 25px;
+ padding-right: 20px;
+ display:inline-block; 
+}
+
+.ownerNameCL{
+  width: 575px;
+}
+.styleYearCL,.colorPlateCL{
+  width: 200px;
+}
+.plateCL{
+  width: 200px;
+}
+
+.vinCL{
+  width: 300px;
+}
+.descriptionCL{
+  width: 875px;
+}
+.makeModelCL{
+  width: 275px;
+}
+
+

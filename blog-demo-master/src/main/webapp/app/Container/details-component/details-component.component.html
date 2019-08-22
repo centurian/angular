@@ -1,0 +1,370 @@
+<div class="w3-display-container">
+    <mat-card-title class="title">Incident Details</mat-card-title>
+    <mat-divider></mat-divider>
+    <mat-divider></mat-divider>
+    <mat-divider></mat-divider>
+    <div class="w3-row">
+
+        <label class="details" for="lAddr">Incident / Concern</label><br>
+
+        <div class="w3-display-center">
+            <mat-form-field class="incidentCL" appearance="outline">
+
+                <mat-label class="lblincident">Type of incident/concern that best represents this situation?</mat-label>
+                <mat-select [(value)]="selected" [formControl]="evaluationRuleField" id="evaluationRuleField"
+                    placeholder="Select value" name="evaluationRuleField">
+                    <mat-option *ngFor="let incident of incidents" [value]="incident">
+                        {{incident.viewValue}}
+                    </mat-option>
+                    <mat-error *ngIf="evaluationRuleField.hasError('required')">
+                        Type of incident/concern is <strong>required</strong>
+                    </mat-error>
+
+                </mat-select>
+            </mat-form-field>
+
+
+            <div *ngIf="selected">
+
+                <mat-form-field class="classific" *ngIf="selected.viewValue === 'Cargo Theft'" appearance="outline">
+                    <mat-label class="lblincident">Classification I</mat-label>
+                    <mat-select matNativeControl required [formControl]="evaluationRuleFieldC"
+                        placeholder="Select Field" [(value)]="ruleValueFields" id="evaluationRuleField"
+                        name="evaluationRuleField">
+                        <mat-option *ngFor="let cargoTheft of cargoThefts" [value]="cargoTheft">{{cargoTheft.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="evaluationRuleFieldC.hasError('required')">
+                        This field is required
+                    </mat-error>
+                    <mat-hint>(Select One)</mat-hint>
+                </mat-form-field>
+
+                <mat-form-field class="classific" *ngIf="selected.viewValue === 'Mode of Transport'"
+                    appearance="outline">
+                    <mat-label class="lblincident">Classification I</mat-label>
+                    <mat-select matNativeControl required [formControl]="evaluationRuleFieldC"
+                        placeholder="Select Field" [(value)]="ruleValueFields" id="evaluationRuleField"
+                        name="evaluationRuleField">
+                        <mat-option *ngFor="let modeTransport of modeTransports" [value]="modeTransport">
+                            {{modeTransport.viewValue}}</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="evaluationRuleFieldC.hasError('required')">
+                        This field is required
+                    </mat-error>
+
+                </mat-form-field>
+            </div>
+        </div>
+
+        <!-- {{selected | json}} -->
+        <mat-divider class="divider"></mat-divider>
+        <mat-divider></mat-divider>
+
+        <div *ngIf="selected">
+
+            <label *ngIf="selected.viewValue === 'Cargo Theft'" class="details" for="lAddr">Route Origin and
+                Destination</label><br>
+
+            <div class="w3-display-center" *ngIf="selected.viewValue === 'Cargo Theft'">
+                <tr>
+                    <mat-form-field class="origin" appearance="outline">
+                        <mat-label class="lblOrigin">
+                            <mat-icon matSuffix>mode_edit</mat-icon> Origin
+                        </mat-label>
+                        <input matInput type="text" [formControl]="fmOrigin" placeholder="Type Origin"
+                            [(ngModel)]="valueOrigin">
+                        <button mat-button *ngIf="valueOther" matSuffix mat-icon-button aria-label="Clear"
+                            (click)="valueOther=''">
+                            <mat-icon>close</mat-icon>
+                        </button>
+
+                        <mat-error *ngIf="fmOrigin.hasError('required')">
+                            Origin is <strong>required</strong>, please type the Origin
+                        </mat-error>
+
+                        <mat-hint>please type Origin</mat-hint>
+                    </mat-form-field>
+                    <mat-form-field class="destination" appearance="outline">
+                        <mat-label class="lblDestination">
+                            <mat-icon matSuffix>mode_edit</mat-icon> Destination
+                        </mat-label>
+                        <input matInput type="text" [formControl]="fmDestination" placeholder="Type Destination input"
+                            [(ngModel)]="valueDest">
+                        <button mat-button *ngIf="valueOther" matSuffix mat-icon-button aria-label="Clear"
+                            (click)="valueOther=''">
+                            <mat-icon>close</mat-icon>
+                        </button>
+
+                        <mat-error *ngIf="fmDestination.hasError('required')">
+                            Destination is <strong>required</strong>, please type the Destination
+                        </mat-error>
+                        <mat-hint>please type Destination</mat-hint>
+                    </mat-form-field>
+                </tr>
+                <tr>
+
+                    <mat-form-field class="carrier" appearance="outline">
+                        <mat-label class="lblCarrier">
+                            <mat-icon matSuffix>mode_edit</mat-icon> Carrier
+                        </mat-label>
+                        <input matInput type="text" [formControl]="fmCarrier" placeholder="Type Carrier input"
+                            [(ngModel)]="valueCarrier">
+                        <button mat-button *ngIf="valueOther" matSuffix mat-icon-button aria-label="Clear"
+                            (click)="valueOther=''">
+                            <mat-icon>close</mat-icon>
+                        </button>
+                        <mat-error *ngIf="fmCarrier.hasError('required')">
+                            Carrier is <strong>required</strong>, please type the Carrier
+                        </mat-error>
+                        <mat-hint>please type Carrier</mat-hint>
+                    </mat-form-field>
+
+                    <mat-form-field class="carrier" appearance="outline">
+                        <mat-label class="lblCarrier">
+                            <mat-icon matSuffix>mode_edit</mat-icon> Carrier
+                        </mat-label>
+                        <mat-select matNativeControl required [formControl]="fmCarrierLists" placeholder="Select Field"
+                            [(value)]="ruleValueFields" id="evaluationRuleField" name="evaluationRuleField">
+                            <mat-option *ngFor="let carrier of carriers" [value]="carrier">{{carrier.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="fmCarrierLists.hasError('required')">
+                            Carrier is <strong>required</strong>
+                        </mat-error>
+                        <mat-hint>please select Carrier</mat-hint>
+                    </mat-form-field>
+                </tr>
+
+                <tr>
+                    <mat-form-field class="modeTransport" appearance="outline">
+                        <mat-label class="lblModeTransport">
+                            Mode of Transport</mat-label>
+                        <mat-select matNativeControl required [formControl]="fmModeTransport" placeholder="Select Field"
+                            [(value)]="ruleValueFields" id="evaluationRuleField" name="evaluationRuleField">
+                            <mat-option *ngFor="let modeTransport of modeTransports" [value]="modeTransport">
+                                {{modeTransport.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="fmModeTransport.hasError('required')">
+                            This field is required
+                        </mat-error>
+                        <mat-hint>(Select One)</mat-hint>
+                    </mat-form-field>
+
+                    <mat-form-field class="incType" appearance="outline">
+                        <mat-label class="lblIncType">
+                            Incident Type</mat-label>
+                        <select matNativeControl required [formControl]="fmIncType">
+                            <option label="--select something --"></option>
+                            <option value="hijacked">Ocean</option>
+                            <option value="stolen">Air</option>
+                        </select>
+                        <mat-error *ngIf="fmIncType.hasError('required')">
+                            This field is required
+                        </mat-error>
+                        <mat-hint>(Select One)</mat-hint>
+                    </mat-form-field>
+                </tr>
+            </div>
+            <div *ngIf="selected.viewValue === 'Cargo Theft'">
+
+                <label class="lblChk" for="lAddr">Please Check all Boxes that Apply for Product</label>
+                <tr>
+                    <mat-checkbox class="chkBoxProduct" [(ngModel)]="Dell">Dell </mat-checkbox>
+                    <td>&nbsp;
+                        <!-- <label *ngIf="Dell" for="lAddr">Value</label>
+                        <input *ngIf="Dell" type="text" [formControl]="fmlblDell_chk">
+                        <mat-icon *ngIf="Dell" matSuffix>mode_edit</mat-icon> -->
+                        <mat-form-field *ngIf="Dell" class="dellValCL" appearance="outline">
+                            <mat-label class="lblDellVal">
+                                <mat-icon matSuffix>mode_edit</mat-icon> Value
+                            </mat-label>
+                            <input matInput type="text" [formControl]="fmlblDell_chk" [(ngModel)]="valueDellCheck">
+                            <button mat-button *ngIf="valueDellCheck" matSuffix mat-icon-button aria-label="Clear"
+                                (click)="valueDellCheck=''">
+                                <mat-icon>close</mat-icon>
+                            </button>
+                        </mat-form-field>
+
+                    </td>
+                </tr>
+                <tr>
+                    <mat-checkbox class="chkBoxProduct" [(ngModel)]="EMC">EMC </mat-checkbox>
+                    <td>&nbsp;
+
+                        <mat-form-field *ngIf="EMC" class="dellValCL" appearance="outline">
+                            <mat-label class="lblDellVal">
+                                <mat-icon matSuffix>mode_edit</mat-icon> Value
+                            </mat-label>
+                            <input matInput type="text" [formControl]="fmlblEMC_chk" [(ngModel)]="valueEmcCheck">
+                            <button mat-button *ngIf="valueEmcCheck" matSuffix mat-icon-button aria-label="Clear"
+                                (click)="valueEmcCheck=''">
+                                <mat-icon>close</mat-icon>
+                            </button>
+                        </mat-form-field>
+
+                    </td>
+                </tr>
+                <tr>
+                    <mat-checkbox class="chkBoxProduct" [(ngModel)]="Vendor">Vendor </mat-checkbox>
+                    <td>
+                        &nbsp;&nbsp;
+
+                        <mat-form-field *ngIf="Vendor" class="dellValCL" appearance="outline">
+                            <mat-label class="lblDellVal">
+                                <mat-icon matSuffix>mode_edit</mat-icon> Value
+                            </mat-label>
+                            <input matInput type="text" [formControl]="fmlblVendor_chk" [(ngModel)]="valueVendorCheck">
+                            <button mat-button *ngIf="valueVendorCheck" matSuffix mat-icon-button aria-label="Clear"
+                                (click)="valueVendorCheck=''">
+                                <mat-icon>close</mat-icon>
+                            </button>
+                        </mat-form-field>
+
+                    </td>
+                </tr>
+
+
+            </div>
+            <div class="div_Products" *ngIf="selected.viewValue === 'Cargo Theft'">
+                <tr>
+                    <mat-form-field class="shipment" appearance="outline">
+                        <mat-label class="lblShip">
+                            <mat-icon matSuffix>mode_edit</mat-icon>ShipMent Value
+                        </mat-label>
+                        <input matInput type="text" [formControl]="fmShipment" placeholder="Shipment Value"
+                            [(ngModel)]="valueShip">
+
+                        <!-- <mat-hint>please type Shipment Value</mat-hint> -->
+                    </mat-form-field>
+                    <mat-form-field class="loss" appearance="outline">
+                        <mat-label class="lblLossValue">
+                            <mat-icon matSuffix>mode_edit</mat-icon>Loss Value
+                        </mat-label>
+                        <input matInput type="text" [formControl]="fmLossValue" placeholder="Loss Value"
+                            [(ngModel)]="lossValue">
+
+                        <!-- <mat-hint>please type Loss Value</mat-hint> -->
+                    </mat-form-field>
+
+                </tr>
+                <tr>
+                    <label class="lblTrackDef" id="lbllocation">
+                        Track and Trace Program: </label>
+                    <mat-radio-group class="tp-radio-group" [formControl]="fmTrackRadioBtn"
+                        [(ngModel)]="favoriteSeason">
+                        <mat-radio-button class="tp-radio-button" *ngFor="let track of tracks" [value]="track">
+                            {{track}}
+                        </mat-radio-button>
+                    </mat-radio-group>
+                </tr>
+
+                <tr>
+                    <mat-form-field class="clTrack" appearance="outline">
+                        <mat-label class="lblShip">
+                            <mat-icon matSuffix>mode_edit</mat-icon>Recovery Amount
+                        </mat-label>
+                        <input matInput type="text" [formControl]="fmRecoveryAmt" placeholder="Recovery Amount"
+                            [(ngModel)]="valueRecoveryAmt">
+                    </mat-form-field>
+
+                </tr>
+                <div class="tp-selected-value">
+                    Selected Site: {{favoriteSeason}}
+                </div>
+                <tr><br>
+                    <section class="chkRecovery">
+                        <mat-checkbox class="chkBoxRecovery" [(ngModel)]="Recovery">Resulted in Recovery </mat-checkbox>
+                    </section>
+
+                    <mat-form-field class="txtRecovery" *ngIf="Recovery" appearance="outline">
+                        <mat-label class="lblRecovery">
+                            <mat-icon matSuffix>mode_edit</mat-icon> Recovery Value
+                        </mat-label>
+                        <input matInput type="text" [formControl]="fmRecovery" placeholder="Recovery Value"
+                            [(ngModel)]="valueRecovery">
+                        <!-- <mat-hint>please type Recovery Value</mat-hint> -->
+                    </mat-form-field>
+                </tr>
+
+            </div>
+        </div>
+
+        <mat-divider></mat-divider>
+        <mat-divider></mat-divider>
+        <label class="details" for="lAddr">Timeframe</label>
+        <div>
+            <div class="w3-display-center">
+                <tr>
+                    <label class="clTimeFrame" id="lblTimeFrame">
+                        Select the timeframe which best applies to your knowledge of this incident/concern.</label>
+                </tr>
+                <tr>
+                    <mat-radio-group class="radioBtn" aria-labelledby="example-radio-group-label" class="FrameTime"
+                        [(ngModel)]="timeFrame">
+                        <mat-radio-button *ngFor="let tFrame of tFrames" [value]="tFrame">
+                            {{tFrame}}
+                        </mat-radio-button>
+                    </mat-radio-group>
+                </tr>
+            </div>
+        </div>
+        <mat-divider></mat-divider>
+        <mat-divider></mat-divider>
+
+        <label class="details" for="lAddr">Summary</label>
+        <div>
+            <div class="w3-display-center">
+
+
+                <mat-form-field class="summary" appearance="outline">
+                    <mat-label class="lblSummary">
+                        <mat-icon matSuffix>mode_edit</mat-icon> Provide a brief summary of this incident:
+                    </mat-label>
+                    <textarea matInput #inputDif maxlength="256" [formControl]="fmSummary"
+                        placeholder="Provide a brief summary of this incident" [(ngModel)]="valueSummary"></textarea>
+                    <button mat-button *ngIf="valueSummary" matSuffix mat-icon-button aria-label="Clear"
+                        (click)="valueSummary=''">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                    <mat-error *ngIf="fmSummary.hasError('required')">
+                        Brief summary is <strong>required</strong>
+                    </mat-error>
+                    <mat-hint align="end">{{inputDif.value?.length || 0}}/256</mat-hint>
+
+                </mat-form-field>
+
+            </div>
+        </div>
+        <mat-divider></mat-divider>
+        <mat-divider></mat-divider>
+        <label class="details" for="lAddr">Full Details</label>
+        <div>
+            <div class="w3-display-center">
+
+                <mat-form-field class="summary2" appearance="outline">
+                    <mat-label class="lblLocation">
+                        <mat-icon matSuffix>mode_edit</mat-icon> Provide as much detail as possible regarding this
+                        incident/concern:
+                    </mat-label>
+                    <textarea matInput #input maxlength="1000" [formControl]="fmFullSummary" placeholder="Provide as much detail as possible regarding this
+                    incident/concern" [(ngModel)]="valueFullSummary"></textarea>
+                    <button mat-button *ngIf="valueFullSummary" matSuffix mat-icon-button aria-label="Clear"
+                        (click)="valueFullSummary=''">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                    <mat-error *ngIf="fmFullSummary.hasError('required')">
+                        Full summary is <strong>required</strong>
+                    </mat-error>
+                    <mat-hint align="end">{{input.value?.length || 0}}/1000</mat-hint>
+
+                </mat-form-field>
+
+            </div>
+        </div>
+        <mat-divider></mat-divider>
+        <mat-divider></mat-divider>
+    </div>
+
+</div>

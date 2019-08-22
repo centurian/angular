@@ -1,0 +1,58 @@
+<div class="w3-display-container">
+
+
+        <mat-card-title class="title">Follow-Up
+        </mat-card-title>
+        <mat-divider></mat-divider>
+        <mat-divider></mat-divider>
+        <mat-divider></mat-divider>
+
+
+        <div class="w3-row">
+                <div class="w3-display-center">
+                        <p>Follow-Up will allow you to:</p>
+                            <ul>
+                                <li>Upload/Attach documents to this report</li>
+                                <li>Respond to follow-up questions/comments</li>
+                                <li>Provide additional information</li>
+                            </ul>
+                        </div>
+                </div>
+
+                <div class="w3-display-center">
+                        <mat-form-field class="reportCL" appearance="outline">
+                                <mat-label class="lblfName"> <mat-icon matSuffix>mode_edit</mat-icon> Report Key</mat-label>
+                                <input matInput type="text" [formControl]="fmKey" required placeholder="Type Report Key"
+                                    [(ngModel)]="valueKey">
+                               
+                                <button mat-button *ngIf="valueKey" matSuffix mat-icon-button aria-label="Clear"
+                                    (click)="valueKey=''">
+                                    <mat-icon>close</mat-icon>
+                                </button>
+                                <mat-error *ngIf="fmKey.hasError('required')">
+                                    Report Key is <strong>required</strong>
+                                </mat-error>
+                                <mat-hint>please type Report Key (Numeric Only)</mat-hint>
+                            </mat-form-field>
+
+                     
+                           
+                            <div class="btn">       
+                                <button type="button" (click)="toggle()">Submit</button>
+                            </div>
+                                   
+                        <br><br><br>
+
+                            <ng-container *ngIf="show">
+                                    <p class="rptTitle"><b>Thank you for using the Dell Global Security Incident Report to Record this Matter.</b></p>
+                                    <div class="msg">
+                                       The details of your submission can only be accessed by authorized users. 
+                                       You may be contacted for additional information after further review of 
+                                       your submission.
+                                    </div>
+                                    <p>Your Report Key is: {{valueKey}}</p>
+                            </ng-container>
+                                    
+                </div>
+            
+        </div>

@@ -1,0 +1,250 @@
+<div class="w3-display-container">
+
+
+    <mat-card-title class="title">Participants
+        <mat-card-subtitle class="titleSub"><b>(Including but not limited to Victims, Implicated Persons, Accomplices, and/or Witnesses)</b>
+        </mat-card-subtitle>
+    </mat-card-title>
+    <mat-divider></mat-divider>
+    <mat-divider></mat-divider>
+    <mat-divider></mat-divider>
+
+
+    <div class="w3-row">
+        <div class="w3-display-center">
+            <tr>
+                <label class="clTimeFrame" id="lblTimeFrame">
+                    Were any participants involved in this incident/concern?</label>
+            </tr>
+
+
+            <mat-radio-group class="tp-radio-group" [(ngModel)]="favoriteSeason">
+                <mat-radio-button class="tp-radio-button" *ngFor="let season of seasons" [value]="season">
+                    {{season}}
+                </mat-radio-button>
+            </mat-radio-group>
+            <div class="tp-selected-value">
+                Selected Season: {{favoriteSeason}}
+            </div>
+        </div>
+
+        <br>
+        <label *ngIf="favoriteSeason === 'Yes'" for="lAddr">Role & Relationship</label>
+        <mat-divider></mat-divider>
+        <div class="w3-display-center" *ngIf="favoriteSeason">
+
+              
+                    <mat-form-field *ngIf="favoriteSeason === 'Yes'" class="Role" appearance="outline">
+
+                        <mat-label class="lblRole">Role</mat-label>
+                        <mat-select (ngModelChange)="SelectChangeRoleHandler($event)" [formControl]="fmRole"
+                            id="evaluationRuleField" placeholder="Select value" name="evaluationRuleField">
+                            <mat-option *ngFor="let role of roles" [value]="role">
+                                {{role.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="fmRole.hasError('required')">
+                                Role is <strong>required</strong>
+                            </mat-error>
+                    </mat-form-field>
+             
+                    <mat-form-field *ngIf="favoriteSeason === 'Yes'" class="Relation" appearance="outline">
+
+                        <mat-label class="lblRelation">Relationship</mat-label>
+                        <mat-select (ngModelChange)="SelectChangeRelationHandler($event)" [(value)]="selected"
+                            [formControl]="fmRelation" id="evaluationRuleField" placeholder="Select value"
+                            name="evaluationRuleField">
+                            <mat-option *ngFor="let relationShip of relationShips" [value]="relationShip">
+                                {{relationShip.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="fmRelation.hasError('required')">
+                                Relationship is <strong>required</strong>
+                            </mat-error>
+                    </mat-form-field>
+        </div>
+
+        <mat-divider></mat-divider>
+        <mat-divider></mat-divider>
+        <div *ngIf="favoriteSeason">
+
+            <label *ngIf="favoriteSeason === 'Yes'" for="lAddr">Contact Name & Information</label>
+
+            <tr>
+                <table *ngIf="favoriteSeason === 'Yes'">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Role</th>
+                            <th>Relationship</th>
+                            <th>Edit</th>
+                            <th>Update</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let participant of participants">
+                            <td>{{  participant.id }}</td>
+                            <td>
+                                <span contenteditable="true">{{ participant.fName }}</span>
+                            </td>
+                            <td>{{ participant.lName }}</td>
+                            <td>{{ participant.role }}</td>
+                            <td>{{ participant.relationShip }}</td>
+                            <td>
+                                <span>
+                                    <button mat-button>
+                                        <mat-icon matSuffix>mode_edit</mat-icon>
+                                    </button>
+                                </span>
+                            </td>
+                            <td>
+                                <span>
+                                    <button mat-button>
+                                        <mat-icon matSuffix>update</mat-icon>
+                                    </button>
+                                </span>
+                            </td>
+                            <td>
+                                <span>
+                                    <button mat-button>
+                                        <mat-icon matSuffix>person_add_disabled</mat-icon>
+                                    </button>
+                                </span>
+                            </td>
+                        </tr>
+                        <!-- <span class="table-remove">
+                            <button type="button" mdbBtn color="danger" rounded="true" size="sm" class="my-0" (click)="remove(id)">Remove</button>
+                          </span> -->
+                    </tbody>
+
+                </table>
+            </tr>
+
+        </div>
+        <div  class="w3-display-center" *ngIf="favoriteSeason">
+
+            <div class="div_Part" *ngIf="favoriteSeason === 'Yes'">
+                <tr>
+                    <mat-form-field *ngIf="favoriteSeason === 'Yes'" class="fName" appearance="outline">
+                        <mat-label class="lblfName"> <mat-icon matSuffix>mode_edit</mat-icon> First Name</mat-label>
+                        <input matInput type="text" [formControl]="fmName" required placeholder="Type First Name"
+                            [(ngModel)]="valuefName">
+                       
+                        <button mat-button *ngIf="valuefName" matSuffix mat-icon-button aria-label="Clear"
+                            (click)="valuefName=''">
+                            <mat-icon>close</mat-icon>
+                        </button>
+                        <mat-error *ngIf="fmName.hasError('required')">
+                            First Name is <strong>required</strong>
+                        </mat-error>
+                        <mat-hint>please type First Name</mat-hint>
+                    </mat-form-field>
+
+                    <mat-form-field *ngIf="favoriteSeason === 'Yes'" class="lName" appearance="outline">
+                        <mat-label class="lbllName">  <mat-icon matSuffix>mode_edit</mat-icon> Last Name</mat-label>
+                        <input matInput type="text" [formControl]="fmlName" required placeholder="Type Last Name"
+                            [(ngModel)]="valuelName">
+                       
+                        <button mat-button *ngIf="valuelName" matSuffix mat-icon-button aria-label="Clear"
+                            (click)="valuelName=''">
+                            <mat-icon>close</mat-icon>
+                        </button>
+                        <mat-error *ngIf="fmlName.hasError('required')">
+                            Last Name is <strong>required</strong>
+                        </mat-error>
+                        <mat-hint>please type Last Name</mat-hint>
+                    </mat-form-field>
+                </tr>
+                <tr>
+                    <div *ngIf="selected">
+
+                        <!-- <div class="tp-selected-value">
+                            Selected relationShip: {{selected.viewValue}}
+                        </div> -->
+                        <div *ngIf="selected.viewValue === 'Employee' || selected.viewValue === 'Former Employee' ">
+                            <mat-form-field *ngIf="favoriteSeason === 'Yes'" class="lbl" appearance="outline">
+                                <mat-label class="lblTilte"> <mat-icon matSuffix>mode_edit</mat-icon> Job Title</mat-label>
+                                <input matInput type="text" [formControl]="fmTitle" placeholder="Type Job Title"
+                                    [(ngModel)]="valueTitle">
+                                
+                                <button mat-button *ngIf="valueTitle" matSuffix mat-icon-button aria-label="Clear"
+                                    (click)="valueTitle=''">
+                                    <mat-icon>close</mat-icon>
+                                </button>
+                                <mat-hint>please type First Name</mat-hint>
+                            </mat-form-field>
+
+                            <mat-form-field *ngIf="favoriteSeason === 'Yes'" class="lbl" appearance="outline">
+                                <mat-label class="lblBadge">  <mat-icon matSuffix>mode_edit</mat-icon>Badge Number</mat-label>
+                                <input matInput type="text" [formControl]="fmBadge" placeholder="Type Badge Number"
+                                    [(ngModel)]="valueBadge">
+                               
+                                <button mat-button *ngIf="valueBadge" matSuffix mat-icon-button aria-label="Clear"
+                                    (click)="valueBadge=''">
+                                    <mat-icon>close</mat-icon>
+                                </button>
+                                <mat-hint>please type Badge Number</mat-hint>
+                            </mat-form-field>
+                        </div>
+                        <div *ngIf="selected.viewValue === 'Contractor' ">
+                            <mat-form-field *ngIf="favoriteSeason === 'Yes'" class="lbl" appearance="outline">
+                                <mat-label class="lblBadge">   <mat-icon matSuffix>mode_edit</mat-icon>Badge Number</mat-label>
+                                <input matInput type="text" [formControl]="fmBadge" placeholder="Type Badge Number"
+                                    [(ngModel)]="valueBadge">
+                              
+                                <button mat-button *ngIf="valueBadge" matSuffix mat-icon-button aria-label="Clear"
+                                    (click)="valueBadge=''">
+                                    <mat-icon>close</mat-icon>
+                                </button>
+                                <mat-hint>please type Badge Number</mat-hint>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </tr>
+                <tr>
+                    <mat-form-field *ngIf="favoriteSeason === 'Yes'" class="lbl" appearance="outline">
+                        <mat-label class="lbllName">
+                                <mat-icon matSuffix>mode_edit</mat-icon>Phone Number (Preferred)</mat-label>
+                        <input matInput type="text" [formControl]="fmPhone" placeholder="xxx-xxx-xxxx"
+                            [(ngModel)]="valuePhone">
+                       
+                        <button mat-button *ngIf="valuePhone" matSuffix mat-icon-button aria-label="Clear"
+                            (click)="valuePhone=''">
+                            <mat-icon>close</mat-icon>
+                        </button>
+
+                        <mat-hint>Include the area code, extension, and/or dialing codes if applicable.</mat-hint>
+                    </mat-form-field>
+
+                    <mat-form-field class="lbl" appearance="outline">
+                            <mat-label class="lblEmail"><mat-icon matSuffix>mode_edit</mat-icon>  Email </mat-label>
+                        <input matInput placeholder="Email" [formControl]="email" 
+                        [(ngModel)]="valueEmail">
+                        <button mat-button *ngIf="valueEmail" matSuffix mat-icon-button aria-label="Clear"
+                            (click)="valueEmail=''">
+                            <mat-icon>close</mat-icon>
+                        </button>
+                    </mat-form-field>
+
+                </tr>
+                <br><br>
+                <tr>
+                    
+                        <button class="btn" mat-raised-button (click)="addParticipant($event)">
+                            <mat-icon>person_add</mat-icon> Insert
+                        </button>
+                        <button class="btn" mat-raised-button>
+                            <mat-icon matSuffix>cancel</mat-icon> Cancel
+                        </button>
+                   
+
+                </tr>
+
+            </div>
+
+        </div>
+    </div>
+</div>

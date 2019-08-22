@@ -1,0 +1,126 @@
+<mat-sidenav-container class="sidenav-container">
+    
+  <mat-sidenav #drawer class="sidenav" 
+    [attr.role]="(isHandset$ | async) ? 'navigation' : 'dialog'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="(isHandset$ | async) === true">
+    
+    <div>
+        <!-- [navbarBrandFull]="{src: 'assets/img/dell_logo_40_white.svg', width: 50, height: 50, alt: 'Dell Logo'}" -->
+      <mat-toolbar >
+        <div>
+            <img class="pics" src="assets/img/dell_logo_40_white.svg" height="50px" width="50px">
+        </div>
+
+        <!-- <div>
+            <mat-nav-list>
+                <a mat-list-item routerLink="/Follow Up">Follow Up</a>
+            </mat-nav-list>
+        </div>
+          -->
+      </mat-toolbar>
+      
+  </div >
+    <mat-nav-list class="sideNave">
+      <a mat-list-item routerLink="/All">All</a>
+      <a mat-list-item routerLink="/Logged-By">Logged By</a>
+      <a mat-list-item routerLink="/Reported-By">Reported By</a>
+      <a mat-list-item routerLink="/Location">Location</a>
+      <a mat-list-item routerLink="/Details">Details</a>
+      <a mat-list-item routerLink="/Participants">Participants</a>
+      <a mat-list-item routerLink="/Agencies">Agencies</a>
+      <a mat-list-item routerLink="/Vechicles">Vechicles</a>
+      <a mat-list-item routerLink="/Follow-Up">Follow Up</a>
+      <a mat-list-item routerLink="/Submit">Submit</a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content >
+    <mat-toolbar class="top" color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+        
+      
+      <span>Dell Global Security Incident Report</span>
+      <!-- <mat-nav-list>
+          <a mat-list-item routerLink="/New-Report">New Report</a>
+          <a mat-list-item routerLink="/Follow-Up">Follow Up</a>
+          <a mat-list-item routerLink="/Print">Print</a>
+        </mat-nav-list> -->
+        <td class="w3-display-topright">
+            <!-- <button mat-raised-button  type="button" routerLink="/All">New Report</button> 
+            <button mat-raised-button type="button" routerLink="/FollowUP">Follow Up</button>
+            <button mat-raised-button type="button" >Print</button> -->
+            <button class="w3-button w3" routerLink="/All">New Report</button> 
+            <button class="w3-button w3" routerLink="/FollowUP">Follow Up</button>
+            <button class="w3-button w3" >Print</button>
+          </td>
+          <!-- https://dell.ethicspointvp.com/custom/dell/_security/en/followup.asp -->
+
+    </mat-toolbar>
+  
+    <!-- Add Content Here -->
+    <div>
+    <router-outlet></router-outlet>
+  </div>
+  </mat-sidenav-content>
+  
+</mat-sidenav-container>
+
+
+
+
+<!--<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+    <div>
+      <mat-toolbar>
+        <div>
+            <img class="pics" src="assets/img/brand/dell/dell.png" height="10%" width="50%">
+        </div>
+         
+      </mat-toolbar>
+      
+  </div>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/All">All</a>
+      <a mat-list-item routerLink="/Logged-By">Logged-By</a>
+      <a mat-list-item routerLink="/Reported-By">Reported-By</a>
+      <a mat-list-item routerLink="/Location">Location</a>
+      <a mat-list-item routerLink="/Details">Details</a>
+      <a mat-list-item routerLink="/Participants">Participants</a>
+      <a mat-list-item routerLink="/Agencies">Agencies</a>
+      <a mat-list-item routerLink="/Vechicles">Vechicles</a>
+      <a mat-list-item routerLink="/Follow-Up">Follow-Up</a>
+      <a mat-list-item routerLink="/Submit">Submit</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()">
+        </button>*ngIf="isHandset$ | async"> 
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      
+      <span>Dell Global Security Incident Report</span>
+      
+    </mat-toolbar>
+
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container> -->
+
+
+
+

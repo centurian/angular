@@ -1,0 +1,213 @@
+<div class="w3-display-container">
+
+
+        <mat-card-title class="title">Vehicles</mat-card-title>
+        <mat-divider></mat-divider>
+        <mat-divider></mat-divider>
+        <mat-divider></mat-divider>
+
+    <div class="div_Part">
+        <tr>
+            <label class="clTimeFrame" id="lblTimeFrame">
+                Were any vehicles involved in this incident/concern?</label>
+        </tr>
+
+
+        <mat-radio-group class="tp-radio-group" [(ngModel)]="favoriteChoice">
+            <mat-radio-button class="tp-radio-button" *ngFor="let choice of choices" [value]="choice">
+                {{choice}}
+            </mat-radio-button>
+        </mat-radio-group>
+        <div class="tp-selected-value">
+            Selected Choice: {{favoriteChoice}}
+        </div>
+    </div>
+    <mat-divider></mat-divider>
+    <mat-divider></mat-divider>
+
+    <div *ngIf="favoriteChoice">
+
+        <tr>
+            <label class="clAgency" id="clAgencyId">
+                Using the input controls below, create a list of Participants.
+                <mat-card-subtitle class="subTitle">(At least one Participant is required.)</mat-card-subtitle>
+            </label>
+        </tr>
+
+        <tr>
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Make</th>
+                        <th>Model</th>
+                        <th>Owner</th>
+                        <th>License Plate</th>
+                        <th>State/Country</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let vehicle of vehicles">
+                        <td>{{  vehicle.id }}</td>
+                        <td>{{  vehicle.make }}</td>
+                        <td>
+                            <span contenteditable="true">{{ agency.model }}</span>
+                        </td>
+                        <td>{{ vehicle.owner }}</td>
+                        <td>{{ vehicle.plate }}</td>
+                        <td>{{ vehicle.stateOrCountry }}</td>
+                        <td>
+                            <span>
+                                <button mat-button>
+                                    <mat-icon matSuffix>mode_edit</mat-icon>
+                                </button>
+                            </span>
+                        </td>
+                        <td>
+                            <span>
+                                <button mat-button>
+                                    <mat-icon matSuffix>update</mat-icon>
+                                </button>
+                            </span>
+                        </td>
+                        <td>
+                            <span>
+                                <button mat-button>
+                                    <mat-icon matSuffix>person_add_disabled</mat-icon>
+                                </button>
+                            </span>
+                        </td>
+                    </tr>
+                    <!-- <span class="table-remove">
+                            <button type="button" mdbBtn color="danger" rounded="true" size="sm" class="my-0" (click)="remove(id)">Remove</button>
+                          </span> -->
+                </tbody>
+
+            </table>
+        </tr>
+
+    </div>
+
+    <mat-divider></mat-divider>
+    <mat-divider></mat-divider>
+    <div *ngIf="favoriteChoice">
+        <div *ngIf="favoriteChoice === 'Yes'">
+            <label class="clTimeFrame" id="lblTimeFrame">Contact Name & Information</label>
+        </div>
+    </div>
+
+    <div *ngIf="favoriteChoice">
+        <div *ngIf="favoriteChoice === 'Yes'">
+            <div class="w3-display-center">
+                <tr>
+                    <mat-form-field class="ownerCL" appearance="outline">
+
+                        <mat-label class="lblincident">Owner</mat-label>
+                        <mat-select [(value)]="selected" [formControl]="fmOwner" id="fmPrefix"
+                            placeholder="Select Owner" name="fmOwner">
+                            <mat-option *ngFor="let owner of owners" [value]="owner">
+                                {{owner.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="ownerNameCL" appearance="outline">
+                        <mat-label class="lblOwnerName">
+                            <mat-icon matSuffix>mode_edit</mat-icon> Owners NAme, if known*
+                        </mat-label>
+                        <input matInput type="text" [formControl]="fmOwnerName" placeholder="Type Owners Name"
+                            [(ngModel)]="valueFname">
+                        <mat-hint>please type Owners Name</mat-hint>
+                    </mat-form-field>
+                </tr>
+                <tr>
+                    <mat-form-field class="makeModelCL" appearance="outline">
+                        <mat-label class="lblOwnerName">
+                            <mat-icon matSuffix>mode_edit</mat-icon> Make
+                        </mat-label>
+                        <input matInput type="text" [formControl]="fmMake" placeholder="Type Make"
+                            [(ngModel)]="valueMake">
+                        <mat-hint>please type Make</mat-hint>
+                    </mat-form-field>
+                    <mat-form-field class="makeModelCL" appearance="outline">
+                        <mat-label class="lblOwnerName">
+                            <mat-icon matSuffix>mode_edit</mat-icon> Model
+                        </mat-label>
+                        <input matInput type="text" [formControl]="fmModel" placeholder="Type Model"
+                            [(ngModel)]="valueModel">
+                        <mat-hint>please type Model</mat-hint>
+                    </mat-form-field>
+                    <mat-form-field class="styleYearCL" appearance="outline">
+                        <mat-label class="lblOwnerName">
+                            <mat-icon matSuffix>mode_edit</mat-icon> Style
+                        </mat-label>
+                        <input matInput type="text" [formControl]="fmStyle" placeholder="Type Style"
+                            [(ngModel)]="valueFname">
+                        <mat-hint>please type Style</mat-hint>
+                    </mat-form-field>
+                    <mat-form-field class="styleYearCL" appearance="outline">
+                        <mat-label class="lblOwnerName">
+                            <mat-icon matSuffix>mode_edit</mat-icon> Year
+                        </mat-label>
+                        <input matInput type="text" [formControl]="fmYear" placeholder="Type Year"
+                            [(ngModel)]="valueYear">
+                        <mat-hint>please type Year</mat-hint>
+                    </mat-form-field>
+
+                </tr>
+                <tr>
+                    <mat-form-field class="colorPlateCL" appearance="outline">
+                        <mat-label class="lblOwnerName">
+                            <mat-icon matSuffix>mode_edit</mat-icon> Color
+                        </mat-label>
+                        <input matInput type="text" [formControl]="fmColor" placeholder="Type Color"
+                            [(ngModel)]="valueColor">
+                        <mat-hint>please type Color</mat-hint>
+                    </mat-form-field>
+                    <mat-form-field class="plateCL" appearance="outline">
+                        <mat-label class="lblOwnerName">
+                            <mat-icon matSuffix>mode_edit</mat-icon> License Plate
+                        </mat-label>
+                        <input matInput type="text" [formControl]="fmPlate" placeholder="Type Plate"
+                            [(ngModel)]="valuePlate">
+                        <mat-hint>please type License Plate</mat-hint>
+                    </mat-form-field>
+                    <mat-form-field class="makeModelCL" appearance="outline">
+                        <mat-label class="lblOwnerName">
+                            <mat-icon matSuffix>mode_edit</mat-icon> Stae/Country
+                        </mat-label>
+                        <input matInput type="text" [formControl]="fmStateCountry" placeholder="Type State/Country"
+                            [(ngModel)]="valueState">
+                        <mat-hint>please type State/Country</mat-hint>
+                    </mat-form-field>
+                    <mat-form-field class="vinCL" appearance="outline">
+                        <mat-label class="lblOwnerName">
+                            <mat-icon matSuffix>mode_edit</mat-icon> Vehicle Identification Number
+                        </mat-label>
+                        <input matInput type="text" [formControl]="fmVIN" placeholder="Type VIN"
+                            [(ngModel)]="valueVIN">
+                        <mat-hint>please type VIN</mat-hint>
+                    </mat-form-field>
+                </tr>
+                <tr>
+                    
+            <mat-form-field class="descriptionCL" appearance="outline">
+                    <mat-label class="lblLocation">
+                        <mat-icon matSuffix>mode_edit</mat-icon> Description
+                    </mat-label>
+                    <textarea matInput #input maxlength="1000" [formControl]="fmDescription"
+                        placeholder="Provide a detailed description of the vehicle, including any identifying markings, conditions, and damages." [(ngModel)]="valueFullSummary"></textarea>
+                    <button mat-button *ngIf="valueFullSummary" matSuffix mat-icon-button aria-label="Clear"
+                        (click)="valueFullSummary=''">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                    <mat-error *ngIf="fmDescription.hasError('required')">
+                            Full summary is <strong>required</strong>
+                        </mat-error>
+                        <mat-hint align="end">{{input.value?.length || 0}}/1000</mat-hint>
+    
+                </mat-form-field>
+                </tr>
+            </div>
+        </div>
+    </div>
+</div>
